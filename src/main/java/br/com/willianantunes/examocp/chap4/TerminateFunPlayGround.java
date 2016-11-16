@@ -72,7 +72,7 @@ public class TerminateFunPlayGround {
 	}
 	
 	/**
-	 * It combines a stream into a single objecs.
+	 * It combines a stream into a single object.
 	 */
 	public static void myReduceFun() {
 		System.out.println("------- myReduceFun");
