@@ -16,6 +16,7 @@ public class MergeExampleMaps {
 		Map<String, String> favorites = new HashMap<>();
 		favorites.put("Jenny", "Bus tour");
 		favorites.put("Tom", "Tram");
+		favorites.put("Example", null);
 		
 		System.out.println(favorites); // {Tom=Tram, Jenny=Bus tour}
 		String jenny = favorites.merge("Jenny", "Skyrideee", mapper);
@@ -26,16 +27,19 @@ public class MergeExampleMaps {
 		System.out.println(favorites); // {Tom=Skyride, Jenny=Skyrideee, Antunes=HWorld}
 		String antunes2 = favorites.merge("Antunes", "HWor", mapper);
 		System.out.println(favorites); // {Tom=Skyride, Jenny=Skyrideee, Antunes=HWorld}
+		String example = favorites.merge("Example", "sample", mapper);
+		System.out.println(favorites); // {Tom=Skyride, Example=sample, Jenny=Skyrideee, Antunes=HWorld}
 		
 		/*
-		{Tom=Tram, Jenny=Bus tour}
+		{Tom=Tram, Example=null, Jenny=Bus tour}
 		v1: Bus tour / v2: Skyrideee ==> Result: false
-		{Tom=Tram, Jenny=Skyrideee}
+		{Tom=Tram, Example=null, Jenny=Skyrideee}
 		v1: Tram / v2: Skyride ==> Result: false
-		{Tom=Skyride, Jenny=Skyrideee}
-		{Tom=Skyride, Jenny=Skyrideee, Antunes=HWorld}
+		{Tom=Skyride, Example=null, Jenny=Skyrideee}
+		{Tom=Skyride, Example=null, Jenny=Skyrideee, Antunes=HWorld}
 		v1: HWorld / v2: HWor ==> Result: true
-		{Tom=Skyride, Jenny=Skyrideee, Antunes=HWorld}
+		{Tom=Skyride, Example=null, Jenny=Skyrideee, Antunes=HWorld}
+		{Tom=Skyride, Example=sample, Jenny=Skyrideee, Antunes=HWorld}
 		*/
 	}
 }
