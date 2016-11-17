@@ -14,10 +14,10 @@ public class MergeExampleMaps {
 		favorites.put("Jenny", "Bus tour");
 		favorites.put("Tom", "Tram");
 		
-		System.out.println(favorites);
+		System.out.println(favorites); // {Tom=Tram, Jenny=Bus tour}
 		String jenny = favorites.merge("Jenny", "Skyrideee", mapper);
-		System.out.println(favorites);
+		System.out.println(favorites); // {Tom=Tram, Jenny=Skyrideee}
 		String tom = favorites.merge("Tom", "Skyride", mapper);
-		System.out.println(favorites);
+		System.out.println(favorites); // {Tom=Skyride, Jenny=Skyrideee}
 	}
 }
