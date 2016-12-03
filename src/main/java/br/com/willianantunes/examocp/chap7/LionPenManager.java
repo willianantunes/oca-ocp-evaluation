@@ -1,4 +1,4 @@
-package br.com.willianantunes.examocp.chap7.parallelStream;
+package br.com.willianantunes.examocp.chap7;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
