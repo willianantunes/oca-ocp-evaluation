@@ -13,13 +13,13 @@ import java.util.stream.Stream;
 
 public class TerminateFunPlayGround {
 	public static void main(String[] args) {
-		myCountFun();
-		myMinFun();
-		myMaxFun();
-		myFindAnyAndFirstFun();
-		myAllAnyNoneMatchFun();
+//		myCountFun();
+//		myMinFun();
+//		myMaxFun();
+//		myFindAnyAndFirstFun();
+//		myAllAnyNoneMatchFun();
 		myReduceFun();
-		myCollectFun();
+//		myCollectFun();
 	}
 	
 	public static void myCountFun() {
@@ -80,19 +80,21 @@ public class TerminateFunPlayGround {
 		Stream<String> myStream = Stream.of("w", "o", "l", "f");
 		// String word = myStream.reduce("", (s, v) -> s + v);
 		String word = myStream.reduce("", String::concat);
-		System.out.println(word);
+		System.out.println(word); // wolf
 		
 		System.out.println("# TYPE 2 - Multiplying all of the Integers objects in a stream");
 		Stream<Integer> myIntStream = Stream.of(3, 5, 6);		
 		// System.out.println(myIntStream.reduce(1, (s, v) -> s*v));
 		// Most of the time the identity is not necessary, so we can omit it
 		// But it will return an Optional instead
-		myIntStream.reduce((s, v) -> s*v).ifPresent(System.out::println);
+		myIntStream.reduce((s, v) -> s*v).ifPresent(System.out::println); // 90
 		
 		System.out.println("# TYPE 3 - When processing in parallel");
 		BinaryOperator<Integer> myBinOpe = (x, p) -> x * p;
 		Stream<Integer> myIntStream2 = Stream.of(3, 5, 6);
-		System.out.println(myIntStream2.reduce(1, myBinOpe, myBinOpe));
+		// System.out.println(myIntStream2.reduce(1, myBinOpe, myBinOpe)); // 90
+		// System.out.println(myIntStream2.reduce(4, myBinOpe, myBinOpe)); // 4 * 90 = 360
+		System.out.println(myIntStream2.reduce(5, myBinOpe, myBinOpe)); // 5 * 90 = 450
 	}
 	
 	/**
