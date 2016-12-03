@@ -51,11 +51,13 @@ public class IntermediateFunPlayGround {
 		System.out.println("------- myMapFun");
 		// Converts a list of String objects to a list of Integer
 		Stream<String> myStream = Stream.of("monkey", "gorilla", "bonobo");
-		myStream.map(String::length).forEach(System.out::print);
+		myStream.map(String::length).forEach(System.out::print); // 676
+		
+		System.out.println();
 		
 		Stream<String> myStream2 = Stream.of("monkey", "gorilla", "bonobo");
 		Set<Integer> mySet = myStream2.map(String::length).collect(HashSet::new, HashSet::add, HashSet::addAll);
-		System.out.println(mySet); // Only two because there are two objects with 6 in their length
+		System.out.println(mySet); // Only two because there are two objects with 6 in their length. Output: [6, 7]
 		System.out.println("");
 	}
 	
