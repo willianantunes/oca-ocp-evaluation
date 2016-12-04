@@ -46,5 +46,27 @@ public class WeighAnimalAction extends RecursiveAction {
 		System.out.print("Weights: ");
 		Arrays.asList(weights).stream().forEach(d -> System.out.print(d.intValue() + " "));
 		
+		/**
+		 * Sample of OUTPUT:
+
+[start=0,middle=5,end=10]
+[start=0,middle=2,end=5]
+Animal weighed: 0
+Animal weighed: 2
+[start=5,middle=7,end=10]
+Animal weighed: 1
+Animal weighed: 7
+Animal weighed: 3
+Animal weighed: 5
+Animal weighed: 6
+Animal weighed: 8
+Animal weighed: 4
+Animal weighed: 9
+
+
+Weights: 41 80 81 44 47 94 34 3 97 33 
+
+		 */
+		
 	}
 }
