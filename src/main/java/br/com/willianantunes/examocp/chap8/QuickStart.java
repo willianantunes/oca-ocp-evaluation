@@ -14,7 +14,8 @@ public class QuickStart {
 	public static void main(String[] args) {
 		// atGlance();
 		// readingFun();
-		markingStreamFun();
+		// markingStreamFun();
+		skippingOverDataFun();
 	}
 	
 	public static void atGlance() {
@@ -98,8 +99,12 @@ public class QuickStart {
 			 * t
 			 * a  
 			 */
-			if (is.markSupported()) { 
-				is.mark(100);
+			if (is.markSupported()) {
+				/**
+				 *  The readlimit arguments tells this input stream to allow that many bytes (my case 100) 
+				 *  to be read before the mark position gets invalidated.
+				 */
+				is.mark(100);  
 				System.out.println((char)is.read());
 				System.out.println((char)is.read());
 				is.reset();
@@ -107,6 +112,46 @@ public class QuickStart {
 			System.out.println((char)is.read()); // s
 			System.out.println((char)is.read()); // t
 			System.out.println((char)is.read()); // a
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void skippingOverDataFun() {
+		try(BufferedInputStream is = new BufferedInputStream(new FileInputStream("C:\\Users\\Willian\\Development\\tools\\eclipse-neon-R\\eclipse.ini"))) {			
+			/**
+			 * FILE CONTENT:
+
+					-startup
+					plugins/org.eclipse.equinox.launcher_1.3.200.v20160318-1642.jar
+					--launcher.library
+					plugins/org.eclipse.equinox.launcher.win32.win32.x86_64_1.1.400.v20160518-1444
+					-product
+					org.eclipse.epp.package.jee.product
+					--launcher.defaultAction
+					openFile
+					-showsplash
+					org.eclipse.platform
+					--launcher.defaultAction
+					openFile
+					--launcher.appendVmargs
+					-vmargs
+					-Dosgi.requiredJavaVersion=1.8
+					-XX:+UseG1GC
+					-XX:+UseStringDeduplication
+					-Dosgi.requiredJavaVersion=1.8
+					-Xms256m
+					-Xmx1024m
+
+			 */			
+			
+			System.out.println((char)is.read()); // -
+			is.skip(2); // It will skip 2 bytes, therefore: st
+			System.out.println((char)is.read()); // a
+			System.out.println((char)is.read()); // r
+			System.out.println((char)is.read()); // t
+			System.out.println((char)is.read()); // u
+			System.out.println((char)is.read()); // p
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
