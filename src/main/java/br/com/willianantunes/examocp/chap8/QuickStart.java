@@ -9,13 +9,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.nio.charset.Charset;
 
 public class QuickStart {
 	public static void main(String[] args) {
 		// atGlance();
 		// readingFun();
 		// markingStreamFun();
-		skippingOverDataFun();
+		// skippingOverDataFun();
+		charactedEncodingFun();
 	}
 	
 	public static void atGlance() {
@@ -155,5 +157,14 @@ public class QuickStart {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void charactedEncodingFun() {
+		Charset usAsciiCharset = Charset.forName("US-ASCII");
+		Charset utf8Charset = Charset.forName("UTF-8");
+		Charset utf16Charset = Charset.forName("UTF-16");
+		
+		System.out.println("### Charsets availables:");
+		Charset.availableCharsets().forEach((s, c) -> System.out.println(s));
 	}
 }
