@@ -8,6 +8,10 @@ class Animal implements Serializable {
 	private String name;
 	private int age;
 	private char type;
+	
+	public Animal() {
+		
+	}
 
 	public Animal(String name, int age, char type) {
 		this.name = name;
