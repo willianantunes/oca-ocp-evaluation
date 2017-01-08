@@ -1,6 +1,5 @@
 package br.com.willianantunes.examocp.chap9;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,8 +15,10 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.FileTime;
+import java.nio.file.attribute.UserPrincipal;
+import java.time.Instant;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlaygroundPath {
@@ -35,7 +36,19 @@ public class PlaygroundPath {
 		// readingTwoFun();
 		// writingFun();
 		
-		// For isDirectory(), isRegularFile() and isSymbolicLink() please see to page 478 		
+		/**
+		 *  Other java.nio.file.Files methods:
+		 *  - For isDirectory(), isRegularFile() and isSymbolicLink() please see to page 478
+		 *  - For isHidden(), isReadable(), isExecutable() and size() see pages 479 and 480
+		 */
+		
+		// lastModifiedFun();
+		
+		/**
+		 * Other java.nio.file.Files methods:
+		 * For getOwner(), setOwner() see page 482
+		 */
+		// ownerFun();
 	}
 
 	public static void someSamplesPath() {
@@ -294,5 +307,40 @@ java.nio.file.NoSuchFileException: C:\Users\Willian\Development\git\it-does-not-
 		}
 	}
 	
+	public static void lastModifiedFun() {
+		final Path path = Paths.get("C:\\Users\\Willian\\Pictures\\Tmp\\103.jpg");
+		
+		try {
+			// Gettin it
+			System.out.println(Files.getLastModifiedTime(path));
+			FileTime myFileTime = Files.getLastModifiedTime(path);
+			System.out.println(myFileTime.toMillis());
+			
+			// Setting it
+			Files.setLastModifiedTime(path, FileTime.from(Instant.now()));
+			Files.setLastModifiedTime(path, FileTime.fromMillis(Instant.now().toEpochMilli()));
+			System.out.println(Files.getLastModifiedTime(path));			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public static void ownerFun() {
+		try {
+			UserPrincipal owner = FileSystems.getDefault()
+					.getUserPrincipalLookupService()
+					.lookupPrincipalByName("administrador");
+			System.out.println(owner.getName()); // ANTUNES-SRV\Administrador			
+			System.out.println();
+			
+			final Path path = Paths.get("C:\\Users\\Willian\\Pictures\\Tmp\\103 - Copy.jpg");
+			System.out.println(Files.getOwner(path).getName()); // ANTUNES-SRV\Willian
+			
+			final Path pathAltered = Files.setOwner(path, owner);
+			// It may throws java.nio.file.FileSystemException: This security ID may not be assigned as the owner of this object.
+			System.out.println(Files.getOwner(pathAltered).getName()); // ANTUNES-SRV\Administrador
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
