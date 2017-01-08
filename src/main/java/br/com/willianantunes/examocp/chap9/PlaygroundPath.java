@@ -13,7 +13,8 @@ public class PlaygroundPath {
 		// someSamplesFileSystem();
 		// workingWithLegacy();
 		// subpathFun();
-		relativizeFun();
+		// relativizeFun();
+		relativizeAndNormalizeFun();
 	}
 
 	public static void someSamplesPath() {
@@ -106,7 +107,7 @@ Exception in thread "main" java.nio.file.FileSystemNotFoundException: Provider "
 		// System.out.println("Subpath from 3 to 3 is: " + path.subpath(3,3)); // It throws java.lang.IllegalArgumentException
 	}
 	
-	private static void relativizeFun() {		
+	public static void relativizeFun() {
 		Path path1 = Paths.get("zoo.log");
 		Path path2 = Paths.get("pom.xml");
 		/**
@@ -126,5 +127,18 @@ Exception in thread "main" java.nio.file.FileSystemNotFoundException: Provider "
 		 */
 		System.out.println(path3.relativize(path4)); // ..\..\..\..\..\Dic\WDIC
 		System.out.println(path4.relativize(path3)); // ..\..\Users\Willian\Pictures\Tmp\103.jpg
+	}
+	
+	public static void relativizeAndNormalizeFun() {
+		final Path path1 = Paths.get("C:\\Users\\Willian\\..\\Public"); // It means that there is a Public folder/file in Users folder
+		final Path path2 = Paths.get("zoo.log");
+		System.out.println(path1.resolve(path2)); // C:\Users\Willian\..\Public\zoo.log		
+		System.out.println(path1.resolve(path2).normalize()); // C:\Users\Public\zoo.log
+		System.out.println();
+		System.out.println(path2.resolve(path1)); // C:\Users\Willian\..\Public
+		System.out.println(path2.resolve(path1).normalize()); // C:\Users\Public
+		
+		System.out.println();
+		System.out.println();		
 	}
 }
