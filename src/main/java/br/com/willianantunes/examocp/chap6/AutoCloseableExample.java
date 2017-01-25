@@ -9,9 +9,9 @@ public class AutoCloseableExample {
 	
 	public static void main(String []args) {
 		// example3();
-		// suppresedException();
+		suppresedException();
 		// suppresedExceptionIncorrect();
-		figureItOUt();
+		// figureItOUt();
 	}
 	
 	/**
@@ -72,12 +72,12 @@ public class AutoCloseableExample {
 		} catch (IllegalStateException e) {
 			System.out.println("caught " + e.getMessage());
 			for (Throwable t : e.getSuppressed()) {
-				System.out.println(e.getMessage());
+				System.out.println(t.getMessage());
 			}
 		}
 		/* OUTPUT:
 caught turkeys ran offfffff! Ah! I'm tired of typing it.
-turkeys ran offfffff! Ah! I'm tired of typing it.
+AutoCloseable !Hã!
 		 */
 	}
 	
@@ -87,7 +87,7 @@ turkeys ran offfffff! Ah! I'm tired of typing it.
 		} catch (IllegalArgumentException e) {
 			System.out.println("caught " + e.getMessage());
 			for (Throwable t : e.getSuppressed()) {
-				System.out.println(e.getMessage());
+				System.out.println(t.getMessage());
 			}
 		}
 		/* Catch block look for matches on the primary exception, that is IllegalStateException!
