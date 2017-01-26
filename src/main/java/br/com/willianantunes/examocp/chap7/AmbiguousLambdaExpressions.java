@@ -12,6 +12,7 @@ public class AmbiguousLambdaExpressions {
 	public static void use(Callable<Integer> expression) {}
 	
 	public static void main(String args[]) {
+		// More information on page 342
 		useCallable(() -> { throw new IOException(); }); // COMPILES
 		useSupplier(() -> { throw new IOException(); }); // DOES NOT COMPILE
 		useSupplier(() -> { return 1; }); // COMPILES

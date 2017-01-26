@@ -1,13 +1,13 @@
 package br.com.willianantunes.assertions;
 
 /**
- * You must run using the following commands (can be one or another):
+ * You must run using the following commands (can be one or another):<br /><br />
  * # java -enableassertions Assertions<br />
  * # java -ea Assertions // specific class<br />
  * # java -ea br.com.willianantunes.assertions.Assertions // specific class<br /> 
- * # java -ea br.com.willianantunes... // enable for classes in willianantunes and any subpackages<br />
+ * # java -ea br.com.willianantunes... // enable for classes in willianantunes and any subpackages<br /><br />
  * You can disable assertions using the <i>-disableassertions (or -da)</i> flag for a specific class 
- * or package that was previously enabled. Enabling for br.com package but disabling for Assertions class:
+ * or package that was previously enabled. Enabling for br.com package but disabling for Assertions class:<br /><br />
  * # java -ea:br.com... -da:br.com.willianantunes.assertions.Assertions my.program.Main
  */
 public class Assertions {

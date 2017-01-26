@@ -8,10 +8,10 @@ public class QuickStart {
 	public static void main(String args[]) {
 		// samplesWithForEach();
 		// performanceImprovements();
-		// whyAvoidStatefulOperations();
+		whyAvoidStatefulOperations();
 		// orderBasedConsequences();
 		// unorderedStreams();
-		combiningResultsWithReduce();
+		// combiningResultsWithReduce();
 	}
 	
 	public static void combiningResultsWithReduce() {
@@ -82,13 +82,13 @@ public class QuickStart {
 		Arrays.asList(1, 2, 3, 4, 5, 6)
 			.parallelStream()
 			.map(i -> { data.add(i); return i; }) // AVOID STATEFUL LAMBDA EXPRESSIONS!
-			.forEachOrdered(i -> System.out.print(i+ " "));
+			.forEachOrdered(i -> System.out.print(i+ " ")); // OUTPUT: 1 2 3 4 5 6 
 		
 		System.out.println();
 		
 		for (Integer e : data) {
 			System.out.print(e + " ");
-		}
+		} // OUTPUT: 1 4 6 5 2 3 
 	}
 	
 	public static void performanceImprovements() {
