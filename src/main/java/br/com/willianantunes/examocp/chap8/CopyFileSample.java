@@ -15,9 +15,12 @@ public class CopyFileSample {
 		try (InputStream is = new FileInputStream(source); 
 				OutputStream out = new FileOutputStream(destination)) {
 			int b;
+			int numberOfReads = 0;
 			while ((b = is.read()) != -1) {
 				out.write(b);
+				numberOfReads++;
 			}
+			System.out.println("Number of reads (one byte per read): " + numberOfReads);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -32,10 +35,13 @@ public class CopyFileSample {
 			 */
 			byte[] buffer = new byte[1024];
 			int lengthRead;
+			int numberOfReads = 0;
 			while ((lengthRead = is.read(buffer)) > 0) {
 				out.write(buffer, 0, lengthRead);
 				out.flush();
+				numberOfReads++;
 			}
+			System.out.println("Number of reads (1024 bytes per read): " + numberOfReads);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -43,15 +49,17 @@ public class CopyFileSample {
 	
 	public static void main(String[] args) {
 		File source = new File("C:\\Users\\Willian\\Development\\tools\\eclipse-neon-R\\eclipse.ini");
-		File destination = new File("ZooCopy.class");
+		// File destination = new File("ZooCopy.class");
+		File destination = new File("ZooCopy.txt");
+		File destinationByteArray = new File("ZooCopyByteArray.txt");
 		
 		/**
 		 * The performance for this code, specially for large files, would not be 
 		 * particularly good because the sample does not use any byte arrays.
 		 */
-		// copy(source, destination);
+		copy(source, destination);
 		
-		copyUsingByteArray(source, destination);
-		System.out.println(destination.getAbsolutePath()); // C:\Users\Willian\Development\git\oca-ocp-evaluation\ZooCopy.class
+		copyUsingByteArray(source, destinationByteArray);
+		// System.out.println(destination.getAbsolutePath()); // C:\Users\Willian\Development\git\oca-ocp-evaluation\ZooCopy.class
 	}
 }

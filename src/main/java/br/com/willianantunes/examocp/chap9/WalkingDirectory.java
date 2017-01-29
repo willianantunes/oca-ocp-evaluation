@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.time.Instant;
 import java.util.stream.Stream;
 
-public class walkingDirectory {
+public class WalkingDirectory {
 	public static void main(String args[]) {
 		// showingAllJavaFiles();
 		// searchingADirectory();

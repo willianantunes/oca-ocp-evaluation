@@ -19,8 +19,10 @@ public class ConsoleSample {
 			console.writer().println();
 			console.writer().println();
 			
+			console.format("It (format method) uses the default system locale to establish the formatter!");
+			
 			/**
-			 * Note that the Console class difines only one format() and printf() methods, it does 
+			 * Note that the Console class defines only one format() and printf() methods, it does 
 			 * not define them in other way which take a locale variable.
 			 * In this manner, it uses the default system locale to establish the formatter. Of course, 
 			 * you could always use a custom locale by retrieving the Writer object and passing your own 

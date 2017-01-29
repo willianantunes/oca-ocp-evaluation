@@ -38,7 +38,7 @@ public class PlaygroundPath {
 		
 		/**
 		 *  Other java.nio.file.Files methods:
-		 *  - For isDirectory(), isRegularFile() and isSymbolicLink() please see to page 478
+		 *  - For isDirectory(), isRegularFile() and isSymbolicLink() please see page 478
 		 *  - For isHidden(), isReadable(), isExecutable() and size() see pages 479 and 480
 		 */
 		

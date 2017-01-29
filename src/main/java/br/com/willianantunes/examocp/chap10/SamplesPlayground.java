@@ -18,7 +18,8 @@ public class SamplesPlayground {
 		// countSample();
 		// gettingElsaDetails();
 		// gettingObject();
-		scrollingResultSet();
+		// scrollingResultSet();
+		absoluteFun();
 	}
 	
 	public static void executeUsage() {
@@ -189,6 +190,25 @@ Caused by: ERROR 24000: Invalid cursor state - no current row.
 	... 11 more
 
 			 */
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void absoluteFun() {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:derby:zoo");
+			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			
+			ResultSet rs = stmt.executeQuery("SELECT id, name FROM species ORDER BY id");
+			
+			System.out.println(rs.absolute(3));
+			// System.out.println(rs.getString(1)); // ERROR 24000: Invalid cursor state - no current row.
+			System.out.println(rs.absolute(2));
+			System.out.println(rs.getString(1)); // 2
+			System.out.println(rs.getString(2)); // Zebra
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

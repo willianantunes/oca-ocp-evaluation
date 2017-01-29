@@ -8,7 +8,7 @@ import java.nio.file.attribute.BasicFileAttributeView;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 
-public class viewPlayground {
+public class ViewPlayground {
 	public static void main(String args[]) {
 		// basicFileAttributesSample();
 		basicFileAttributesViewSample();
