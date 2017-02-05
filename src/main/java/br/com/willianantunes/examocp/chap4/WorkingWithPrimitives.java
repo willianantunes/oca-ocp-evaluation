@@ -6,14 +6,14 @@ import java.util.*;
 
 public class WorkingWithPrimitives {
 	public static void main(String args[]) {
-		/*
-		quickStart();
-		primitiveStreams();
+		// quickStart();
+		// primitiveStreams();
 		summarizingStatisticsFun();
-		*/
 		
+		/*
 		Optional<Integer> myInteger = Optional.of(1234235);
 		myInteger.map(x -> x + "asdas").ifPresent(System.out::println);
+		*/
 	}
 	
 	public static void quickStart() {
@@ -63,10 +63,10 @@ public class WorkingWithPrimitives {
 		System.out.println("------- summarizingStatisticsFun");
 		IntStream myIntStream = IntStream.iterate(1, x -> ++x);
 		IntSummaryStatistics stats = myIntStream.limit(10).summaryStatistics();
-		System.out.println(stats.getCount());
-		System.out.println(stats.getMax());
-		System.out.println(stats.getMin());
-		System.out.println(stats.getAverage());
+		System.out.println(stats.getCount()); // 10
+		System.out.println(stats.getMax()); // 10
+		System.out.println(stats.getMin()); // 1
+		System.out.println(stats.getAverage()); // 5.5
 		// myIntStream.forEach(System.out::println); // stream has already been operated upon or closed		
 		System.out.println("");
 		

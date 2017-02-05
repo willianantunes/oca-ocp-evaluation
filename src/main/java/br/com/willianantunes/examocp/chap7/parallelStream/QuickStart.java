@@ -6,12 +6,57 @@ import java.util.stream.*;
 
 public class QuickStart {
 	public static void main(String args[]) {
+		// reduceAccumulatorAndCombiner();
+		// combiningResultsWithReduce();
 		// samplesWithForEach();
-		// performanceImprovements();
-		whyAvoidStatefulOperations();
+		performanceImprovements();
+		// whyAvoidStatefulOperations();
 		// orderBasedConsequences();
 		// unorderedStreams();
-		// combiningResultsWithReduce();
+	}
+	
+	public static void reduceAccumulatorAndCombiner() {
+		class Person {
+			String name; Integer age;
+			Person(String name, Integer age) { this.name = name; this.age = age; }
+			public String toString() { return name + "/" + age; }
+		}
+		
+	    List<Person> persons =
+	            Arrays.asList(
+	                new Person("Max", 18),
+	                new Person("Peter", 23),
+	                new Person("Pamela", 23),
+	                new Person("David", 12));   
+	    System.out.println(persons);
+
+	        Integer ageSum = persons
+	            .stream()
+	            .reduce(0,
+	                (sum, p) -> {
+	                    System.out.format("accumulator: sum=%s; person=%s\n", sum, p);
+	                    return sum += p.age;
+	                },
+	                (sum1, sum2) -> {
+	                    System.out.format("combiner: sum1=%s; sum2=%s\n", sum1, sum2);
+	                    return sum1 + sum2;
+	                });
+
+	        System.out.println(ageSum);
+	        
+	        ageSum = persons
+		            .parallelStream()
+		            .reduce(10,
+		                (sum, p) -> {
+		                    System.out.format("accumulator: sum=%s; person=%s\n", sum, p);
+		                    return sum += p.age;
+		                },
+		                (sum1, sum2) -> {
+		                    System.out.format("combiner: sum1=%s; sum2=%s\n", sum1, sum2);
+		                    return sum1 + sum2;
+		                });
+
+	        System.out.println(ageSum);	        
 	}
 	
 	public static void combiningResultsWithReduce() {
@@ -117,6 +162,7 @@ public class QuickStart {
 		// Define the data
 		List<Integer> data = new ArrayList<>();
 		for (int i=0;i<4000;i++) data.add(i);
+		System.out.println(data.size());
 		
 		// Process the data
 		long start = System.currentTimeMillis();
@@ -126,7 +172,7 @@ public class QuickStart {
 		// Report results 
 		System.out.println("\nTasks completed in: " +time+ " seconds"); // Tasks completed in: 40.054 seconds
 		/**
-		 * As the result was 40.054 seconds, in our example there are 40.000 records, which 
+		 * As the result was 40.054 seconds, in our example there are 4.000 records, which 
 		 * each one took 0,09 seconds or almost 10 milliseconds to process.  
 		 */	
 		

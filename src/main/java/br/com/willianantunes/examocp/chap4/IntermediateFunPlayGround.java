@@ -10,12 +10,12 @@ import java.util.stream.*;
 
 public class IntermediateFunPlayGround {
 	public static void main(String args[]) {
-		myFilterFun();
-		myDistinctFun();
-		myLimitAndSkipFun();
-		myMapFun();
-		myFlatMapFun();
-		mySortedFun();
+		// myFilterFun();
+		// myDistinctFun();
+		// myLimitAndSkipFun();
+		// myMapFun();
+		// myFlatMapFun();
+		// mySortedFun();
 		myPeekFun();
 	}
 	
@@ -30,6 +30,11 @@ public class IntermediateFunPlayGround {
 		System.out.println("------- myDistinctFun");
 		Stream<String> myStream = Stream.of("duck", "duck", "duck", "goose");
 		myStream.distinct().forEach(System.out::println);
+		/**
+		 * OUTPUT:
+duck
+goose
+		 */
 		System.out.println("");
 	}
 	
@@ -37,9 +42,27 @@ public class IntermediateFunPlayGround {
 		System.out.println("------- myLimitAndSkipFun");
 		Stream<Integer> myStreamInt = Stream.iterate(1, n -> n + 1);
 		myStreamInt.limit(10).forEach(System.out::println);
+		/**
+		 * OUTPUT:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+		 */
 		System.out.println("# Now skiping 5 and limiting to 2");
 		Stream<Integer> myStreamInt2 = Stream.iterate(1, n -> n + 1);
 		myStreamInt2.skip(5).limit(2).forEach(System.out::println);
+		/**
+		 * OUTPUT:
+6
+7
+		 */
 		System.out.println("");
 	}
 	
@@ -73,7 +96,12 @@ public class IntermediateFunPlayGround {
 		
 		Stream<List<String>> animals = Stream.of(zero, one, two);
 		animals.flatMap(l -> l.stream()).forEach(System.out::println);
-		
+		/**
+		 * OUTPUT:
+Bonobo
+Mama Gorilla
+Baby Gorilla
+		 */
 		System.out.println("");
 	}
 	
@@ -84,11 +112,10 @@ public class IntermediateFunPlayGround {
 		System.out.println("------- mySortedFun");
 		Stream<String> myStream = Stream.of("brown bear-", "grizzly-");
 		Stream<String> myStream2 = Stream.of("grizzly-", "brown bear-");
-		myStream.sorted(Comparator.reverseOrder())
-		.forEach(System.out::print);
+		myStream.sorted(Comparator.reverseOrder()).forEach(System.out::print); // grizzly-brown bear-
 		System.out.println("");
-		myStream2.sorted()
-		.forEach(System.out::print);
+		
+		myStream2.sorted().forEach(System.out::print); // brown bear-grizzly-
 		System.out.println("");
 	}
 	
@@ -101,8 +128,8 @@ public class IntermediateFunPlayGround {
 		System.out.println("------- myPeekFun");
 		Stream<String> myStream = Stream.of("black", "bear", "brown bear", "grizzly");
 		long count = myStream.filter(s -> s.startsWith("g"))
-				.peek(System.out::println).count();
-		System.out.println(count);
+				.peek(System.out::println).count(); // grizzly
+		System.out.println(count); // 1
 		System.out.println("");
 	}
 }
