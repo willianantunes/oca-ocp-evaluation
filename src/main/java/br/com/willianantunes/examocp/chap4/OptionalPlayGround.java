@@ -1,11 +1,14 @@
 package br.com.willianantunes.examocp.chap4;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class OptionalPlayGround {
 	public static void main(String[] args) {
 		Optional<Double> myOptional1 = OptionalPlayGround.average(1,3,56,1,2);
-		myOptional1 = OptionalPlayGround.average();
+		// myOptional1 = OptionalPlayGround.average();
 		if(myOptional1.isPresent())
 			System.out.println(myOptional1.get());
 		myOptional1.ifPresent(System.out::println);
@@ -16,11 +19,14 @@ public class OptionalPlayGround {
 	
 	public static Optional<Double> average(int... scores) {
 		
+		return Optional.of((double)Arrays.stream(scores).sum() / scores.length);
+		/*
 		if(scores.length == 0)
 			return Optional.ofNullable(null); // return Optional.empty();
 		int sum = 0;
 		for(int score : scores) 
 			sum += score;
 		return Optional.of((double)sum/scores.length);
+		*/
 	}
 }
